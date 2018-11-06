@@ -1,0 +1,578 @@
+{% extends 'base.html' %}
+        {% block title %}资产信息库{% endblock %}
+{% block css %}
+        <link rel="stylesheet" href="/static/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="/static/vendors/bower_components/animate.css/animate.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/select2/dist/css/select2.min.css">
+
+        <link rel="stylesheet" href="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.css"/>
+        <link rel="stylesheet" href="/static/css/app.min.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+       <style>
+        table{
+            min-width: 100%;
+        }
+
+            .btn--icon {
+    width: 2rem;
+    height: 2rem;
+    line-height: .7rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+            .select2-search__field{
+                min-height: 30px;
+            }
+       </style>
+
+
+{% endblock %}
+
+{% include 'sidebar.html' %}
+
+{% block content %}
+
+            <section class="content">
+
+                <div class="content__inner">
+
+
+
+
+                <div class="login__block__header">
+                  <i style="text-align: center"> 134.96.111.198(安全运维平台) </i>
+
+                    <div class="btn-demo">
+                                <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>管理IP:134.96.111.199</button>
+                                <button type="button" class="btn btn-info"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>状态:down</button>
+                               <button type="button" class="btn btn-info"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>主机名:down</button>
+                               <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>类型:资产类型</button>
+                               <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>机房:柯桥</button>
+                               <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>业务组:134.96.111.199</button>
+                               <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>责任人:root</button>
+                              <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>webURL:</button>
+                              <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>制造商:134.96.111.199</button>
+                              <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>设备型号:134.96.111.199</button>
+                              <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>CPU类型:134.96.111.199</button>
+                              <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>物理CPU个数:134.96.111.199</button>
+                             <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>逻辑CPU:134.96.111.199</button>
+                            <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>CPU核心数:134.96.111.199</button>
+                        <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>逻辑CPU:134.96.111.199</button>
+                            <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>CPU核心数:134.96.111.199</button>
+                        <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>磁盘容量:134.96.111.199</button>
+                            <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>内存容量:134.96.111.199</button>
+                        <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>操作系统:134.96.111.199</button>
+                            <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>内核版本:134.96.111.199</button>
+                        <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>SELINUX状态:134.96.111.199</button>
+                        <button type="button" class="btn btn-success"><i class="zmdi zmdi-label-alt-outline" data-toggle="dropdown"></i>SWAP容量:134.96.111.199</button>
+
+                            </div>
+                </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">端口详情</h4>
+
+
+
+                            <div class="btn-demo">
+                                <a class="badge badge-info" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">22
+                                </a>
+                                 <a class="badge badge-info" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">80
+                                </a>
+                                 <a class="badge badge-info" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">3306
+                                </a>
+                                 <a class="badge badge-info" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">65532
+                                </a>
+                                 <a class="badge badge-info" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">123
+                                </a>
+                                 <a class="badge badge-info" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">ftpe
+                                </a>
+
+                            </div>
+
+                            <div class="collapse" id="collapseExample">
+                                <hr>
+
+                                <div class="card card-body">
+                                 ssh 端口服务版本2.0
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class="card">
+                    <div class="card-body">
+                       <h5> 弱口令信息</h5>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-center ">发现时间</th>
+                                    <th class="text-center ">用户名</th>
+                                    <th class="text-center ">密码</th>
+                                    <th class="text-center ">类型</th>
+                                    <th class="text-center ">状态</th>
+                                    <th class="text-center ">端口</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row"><div class="issue-tracker__item hidden-lg-down">
+                                    <i class="zmdi zmdi-time"></i>2018-02-12 14:58:51
+                                </div></th>
+                                    <td>admin</td>
+                                    <td>134.96.111.198</td>
+                                    <td>系统超时自动退出，用户账号：admin</td>
+                                    <td><span class="badge badge-pill badge-info">低</span></td>
+                                    <td>登录日志</td>
+                                </tr>
+
+                                 <tr>
+                                    <th scope="row"><div class="issue-tracker__item hidden-lg-down">
+                                    <i class="zmdi zmdi-time"></i>2018-02-12 14:58:51
+                                </div></th>
+                                    <td>admin</td>
+                                    <td>134.96.111.198</td>
+                                    <td>系统超时自动退出，用户账号：admin</td>
+                                    <td><span class="badge badge-pill badge-danger">错误</span></td>
+                                    <td>登录日志</td>
+                                </tr>
+
+
+                                 <tr>
+                                    <th scope="row"><div class="issue-tracker__item hidden-lg-down">
+                                    <i class="zmdi zmdi-time"></i>2018-02-12 14:58:51
+                                </div></th>
+                                    <td>admin</td>
+                                    <td>134.96.111.198</td>
+                                    <td>系统超时自动退出，用户账号：admin</td>
+                                    <td><span class="badge badge-pill badge-warning">高</span></td>
+                                    <td>登录日志</td>
+                                </tr>
+
+
+                                  <tr>
+                                    <th scope="row"><div class="issue-tracker__item hidden-lg-down">
+                                    <i class="zmdi zmdi-time"></i>2018-02-12 14:58:51
+                                </div></th>
+                                    <td>admin</td>
+                                    <td>134.96.111.198</td>
+                                    <td>系统超时自动退出，用户账号：admin</td>
+                                    <td><span class="badge badge-pill badge-primary">中</span></td>
+                                    <td>登录日志</td>
+                                </tr>
+
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <br>
+                    </div>
+                   </div>
+
+
+                    <div class="card">
+                    <div class="card-body">
+                       <h5>主机漏洞信息</h5>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-center ">发现时间</th>
+                                    <th class="text-center ">插件ID</th>
+                                    <th class="text-center ">漏洞简介</th>
+                                    <th class="text-center ">漏洞级别</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td scope="row"><div class="issue-tracker__item hidden-lg-down">
+                                    <i class="zmdi zmdi-time"></i>2018-02-12 14:58:51
+                                </div></td>
+                                    <td>12</td>
+                                    <td>系统超时自动退出，用户账号：admin</td>
+                                    <td><span class="badge badge-pill badge-info">低</span></td>
+                                </tr>
+
+                                 <tr>
+                                    <td scope="row"><div class="issue-tracker__item hidden-lg-down">
+                                    <i class="zmdi zmdi-time"></i>2018-02-12 14:58:51
+                                </div></td>
+                                    <td>13</td>
+                                    <td>系统超时自动退出，用户账号：admin</td>
+                                    <td><span class="badge badge-pill badge-danger">错误</span></td>
+                                </tr>
+
+
+                                 <tr>
+                                    <td scope="row"><div class="issue-tracker__item hidden-lg-down">
+                                    <i class="zmdi zmdi-time"></i>2018-02-12 14:58:51
+                                </div></td>
+                                    <td>13232</td>
+                                    <td>系统超时自动退出，用户账号：admin</td>
+                                    <td><span class="badge badge-pill badge-warning">高</span></td>
+                                </tr>
+
+
+                                  <tr>
+                                    <td scope="row"><div class="issue-tracker__item hidden-lg-down">
+                                    <i class="zmdi zmdi-time"></i>2018-02-12 14:58:51
+                                </div></td>
+                                    <td>1333</td>
+                                    <td>系统超时自动退出，用户账号：admin</td>
+                                    <td><span class="badge badge-pill badge-primary">中</span></td>
+                                </tr>
+
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                </div>
+
+            </section>
+
+
+{% endblock %}
+
+{% block js %}
+<script src="/static/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+<script src="/static/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script src="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="/static/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+<script src="/static/vendors/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+<script src="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/static/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.js"></script>
+{#<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.js"></script>#}
+<script src="/static/js/app.min.js"></script>
+
+
+
+
+
+
+
+
+     <!-- App functions and actions -->
+
+<script type="text/javascript">
+
+
+
+        var dtTable;
+
+        $(function(){
+
+       dtTable =  $('#dataTable').DataTable({
+        // ordering: false,
+        processing: true,
+        serverSide: true,
+        "bFilter" : true,
+
+
+         "oLanguage": { //国际化配置
+                    "sProcessing" : "正在获取数据，请稍后...",
+                    "sLengthMenu" : "显示 _MENU_ 条",
+                    "sSearch": "搜索:",
+                    "sZeroRecords" : "没有您要搜索的内容",
+                    "sInfo" : "从 _START_ 到  _END_ 条记录 共 _TOTAL_ 条记录",
+                    "sInfoEmpty" : "记录数为0",
+                    "sInfoFiltered" : "(共显示 _MAX_ 条数据)",
+                    "sInfoPostFix" : "",
+
+                      },
+        ajax: {
+            url: '/assets_info/',
+            type: 'GET'
+        },
+        columns: [{
+            "targets" : 0,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+
+                var html = ' <th> <label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input itemId" value='+row[0]+'>'+
+                        '<span class="custom-control-indicator"></span><span class="custom-control-description"></span> </label></th>';
+                return html;
+            }
+        }, {
+            "targets" : 1,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center"><a href="/host_info">'+row[1]+'</a></td>';
+                return html;
+            }
+        },{
+            "targets" : 2,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center"><a href="/task_info">'+row[3]+'</a></td>';
+                return html;
+            }},
+
+            {
+            "targets" : 3,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th class="text-center"><span class="badge badge-pill badge-info">' + row[2] + '</span></th>';
+                return html;
+            }},
+
+                {
+            "targets" : 2,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center"><a href="/task_info">'+row[4]+'</a></td>';
+                return html;
+            }},
+
+                   {
+            "targets" : 2,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center"><a href="/task_info">'+row[5]+'</a></td>';
+                return html;
+            }},
+
+                   {
+            "targets" : 2,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center"><a href="/task_info">'+row[6]+'</a></td>';
+                return html;
+            }},
+                     {
+            "targets" : 2,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center"><a href="/task_info">'+row[7]+'</a></td>';
+                return html;
+            }},
+
+
+
+                {
+            "targets" : 5,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th scope="row"><div class="issue-tracker__item hidden-lg-down">'+
+                                    '<i class="zmdi zmdi-time"></i>'+row[10]+
+                                '</div></th>';
+                return html;
+                }},
+
+               {
+            "targets" : 6,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th class="text-center"><span class="badge badge-pill badge-info">' + row[9] + '</span></th>';
+                return html;
+            }},
+
+
+             {
+            "targets" : 7,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th class="text-center">' +
+                        '<button class="btn btn-success btn--icon"  onclick="startTask(this)" ><i class="zmdi zmdi-rotate-right"></i></button>'+
+                                     '</td>';
+                return html;
+            }}
+
+        ]
+    });
+
+
+
+
+
+
+            $('.addData').css({'max-height':$(window).height()});
+            // 全选 or 全不选
+            $('#checkAll').click(function(){
+                if ($(this).hasClass('checked')){
+                    $('.custom-control-input').prop('checked',false);
+                    $(this).removeClass('checked');
+                }else{
+                    $('.custom-control-input').prop('checked',true);
+                    $(this).addClass('checked');
+                }
+            });
+            // 删除
+            $('#delete').click(function(){
+                var $checkbox = $('.custom-control-input').filter(':checked');
+                var selectedData = [];
+
+                $checkbox.each(function () {
+                    selectedData.push($(this).val());
+                });
+
+                if($checkbox.size()){
+                    //ajax
+                    swal({
+                        title: "删除资产!",
+                        text: '你要删除资产吗？',
+                        type: "warning",
+                        showConfirmButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: "删除",
+                        closeOnConfirm: false,
+                        background: 'rgba(0, 0, 0, 0.96)'
+                    }).then(function() {
+                        console.log(selectedData)
+                        $.ajax({
+               dataType: "JSON",
+			   url:'/del_assets/', //请求地址
+			   type:"POST",  //提交类似
+			   data: JSON.stringify({
+				'data':selectedData
+			}),  //提交参数
+			   success:function(response){
+                  dtTable.page(1).draw();
+				 $.notify({
+                        title: '删除资产',
+                        message: '添加成功'
+                    }, {
+                        type: 'success'
+                 });
+			},
+	    	error:function(response){
+	    		alert('添加失败');
+	    	}
+		})
+                    })
+                }
+                    else{
+                    dtTable.page(1).draw();
+                    $.notify({
+                        title: '删除操作',
+                        message: '请选择一行进行删除'
+                    }, {
+                        type: 'warning'
+                    });
+                }
+            });
+            // 添加
+            $('#addBtn').click(function(e){
+                e.stopPropagation();
+                $('body').addClass('aside-toggled')
+                $('.assetsPop').addClass('toggled').attr('data-change','0');
+            });
+        });
+        $(document).click(function(e){
+            if($(".assetsPop").hasClass("toggled")){
+                var con = $(".assetsPop");
+                if(!con.is(e.target) && con.has(e.target).length === 0){
+                    cancelAdd();
+                }
+            }
+        });
+
+
+            // select 样式
+            $(".form-select").select2();
+
+            $('.assetsPopMask').on('click', function () {
+                cancelAdd();
+            });
+
+        // 取消
+        function cancelAdd(){
+            $('body').removeClass('aside-toggled'),
+            $('.assetsPop').removeClass('toggled');
+        }
+
+        // 后台提交
+   function confirmAdd(){
+    //ob表单信息
+    var ob = {};
+    for (var i = 0;i< $('[name ^= "assets"]').length;i++){
+        var name = $('[name ^= "assets"]').eq(i+0).attr('name');
+        ob[name] = $('[name ^= "assets"]').eq(i+0).val();
+    }
+
+    $.ajax({
+			dataType: "JSON",
+			url:'/add_assets/',
+			type:"POST",
+			contentType: "application/json;charset=utf-8",
+			data: JSON.stringify({
+				'data':ob
+			}),
+			success:function(result){
+                dtTable.page(1).draw();
+                 if (result.status==1002){
+                       $.notify({
+                        title: '添加资产',
+                        message: '添加成功'
+                    }, {
+                        type: 'success'
+                    });
+                }else if(result.status == 1001){
+                     dtTable.page(1).draw();
+
+            $.notify({
+                        title: '资产添加',
+                        message: result.error
+                    }, {
+                        type: 'danger'
+                    });
+                }
+			},
+	    	error:function(response){
+	    		alert('添加资产失败');
+	    	}
+        })
+        }
+
+    function startTask(obj){
+            num=$(obj).parents('tr').find('.itemId').val();
+          $.ajax({
+			dataType: "JSON",
+			url:'/api_assets_asnible/'+num+'/',
+			type:"get",
+			contentType: "application/json;charset=utf-8",
+			success:function(response){
+                dtTable.page(1).draw();
+
+                   $.notify({
+                        title: '开始任务',
+                        message: '任务开始执行成功'
+                    }, {
+                        type: 'success'
+                    });
+			},
+	    	error:function(response){
+                dtTable.page(1).draw();
+                console.log(response)
+                $.notify({
+                        title: '开始端口扫描任务',
+                        message: '任务执行失败'
+                    }, {
+                        type: 'danger'
+                    });
+
+	    	}
+        })
+
+
+        }
+
+    </script>
+ {% endblock %}

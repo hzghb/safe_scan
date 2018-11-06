@@ -1,0 +1,774 @@
+{% extends 'right.html' %}
+        {% block title %}资产信息库{% endblock %}
+{% block css %}
+        <link rel="stylesheet" href="/static/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="/static/vendors/bower_components/animate.css/animate.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/select2/dist/css/select2.min.css">
+        <link rel="stylesheet" href="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.css"/>
+        <link rel="stylesheet" href="/static/css/app.min.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+       <link rel="stylesheet" type="text/css" href="/static/fonts/iconfont/iconfont.css">
+       <style>
+        table{
+            min-width: 100%;
+        }
+
+            .btn--icon {
+    width: 2rem;
+    height: 2rem;
+    line-height: .7rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+            .select2-search__field{
+                min-height: 30px;
+            }
+
+
+
+       .row {
+    margin: 0;
+    font-family: Nunito, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 2.5;
+    color: #11d2ea;
+}
+       .host-info-wrap .card-body .label{
+           font-size: 14px;
+       }
+       .host-info-wrap .card-body .label-val{
+           font-size: 12px;
+       }
+
+       </style>
+
+
+{% endblock %}
+
+{% block content %}
+
+            <section class="content">
+
+                <div class="content__inner">
+
+
+
+
+                <div class="login__block__header host-info-wrap">
+                  {%  for assets in assets_info %}
+                  {% for server in server_info %}
+                  <i style="text-align: center"> {{ assets.assets_ip }}({{ assets.assets_name }}) </i>
+                    <div class="card icons-demo">
+                        <div class="card-body">
+                            <h2 class="card-title"><i class="zmdi zmdi-label-heart zmdi-hc-fw"></i>资产标签</h2>
+
+                            <div class="row">
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-ip"></i>
+                                    <span class="label">管理IP-</span>
+                                    <span class="label-val">{{ assets.assets_ip }}</span>
+                                </div>
+
+
+                                 <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-yunzhuji"></i>
+                                    <span class="label">主机名-</span>
+                                    <span class="label-val">华为</span>
+                                </div>
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-zhuangtaijiankong"></i>
+                                    <span class="label">资产状态-</span>
+                                    <span class="label-val">{{ assets.get_assets_status_display }}</span>
+                                </div>
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-type"></i>
+                                    <span class="label">资产类型-</span>
+                                    <span class="label-val">{{assets.assets_type  }}</span>
+                                </div>
+
+                                 <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-iconfontwo"></i>
+                                    <span class="label">业务组-</span>
+                                    <span class="label-val">{{assets.assets_business.business_name }}</span>
+                                </div>
+
+
+
+                                 <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-IDCjifang"></i>
+                                    <span class="label">机房-</span>
+                                    <span class="label-val">{{ assets.server_pic.name }}</span>
+                                </div>
+
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-iconfontwo"></i>
+                                    <span class="label">责任人-</span>
+                                    <span class="label-val">{{ assets.assets_business.contact }}</span>
+                                </div>
+
+                                 <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-xuliehaoguanli"></i>
+                                    <span class="label">序列号-</span>
+                                    <span class="label-val">{{ server.sn }}</span>
+                                </div>
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-shangjiarenzheng"></i>
+                                    <span class="label">制造商-</span>
+                                    <span class="label-val">{{ server.manufacturer }}</span>
+                                </div>
+
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-shebeixinghao"></i>
+                                    <span class="label">型号-</span>
+                                    <span class="label-val">{{ server.model  }}</span>
+                                </div>
+
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-cpu_icon"></i>
+                                    <span class="label">物理CPU个数-</span>
+                                    <span class="label-val">{{ server.cpu_number }}</span>
+                                </div>
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-CPU"></i>
+                                    <span class="label">逻辑CPU个数-</span>
+                                    <span class="label-val">{{ server.vcpu_number }}</span>
+                                </div>
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-CPU"></i>
+                                    <span class="label">CPU核心数-</span>
+                                    <span class="label-val">{{ server.cpu_core }}</span>
+                                </div>
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-neicun"></i>
+                                    <span class="label">内存-</span>
+                                    <span class="label-val">{{ server.ram_total  }}</span>
+                                </div>
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-neicun"></i>
+                                    <span class="label">磁盘-</span>
+                                    <span class="label-val">{{ server.disk_total }}</span>
+                                </div>
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-OS_LinuxRedhat"></i>
+                                    <span class="label">操作系统-</span>
+                                    <span class="label-val">{{ server.system }}</span>
+                                </div>
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-kernel"></i>
+                                    <span class="label">内核版本-</span>
+                                    <span class="label-val">{{ server.kernel }}</span>
+                                </div>
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-zhujijilu"></i>
+                                    <span class="label">Selinux-</span>
+                                    <span class="label-val">{{ server.selinux }}</span>
+                                </div>
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-swapcalls"></i>
+                                    <span class="label">swap交换分区-</span>
+                                    <span class="label-val">{{ server.swap }}</span>
+                                </div>
+
+
+                                <div class="col-sm-4" data-name="cloud-box" data-code="f217">
+                                    <i class="iconfont icon-cpu1"></i>
+                                    <span class="label">CPU类型-</span>
+                                    <span class="label-val">{{ server.cpu }}</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% endfor %}
+                  {% endfor %}
+
+
+                <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="iconfont icon-duankoutance"></i>端口详情</h4>
+
+
+
+                            <div class="btn-demo">
+                                {% for port in port_info %}
+                                <a class="badge badge-danger" style="font-size:200%" data-toggle="collapse" href="#{{ port_id }}{{ port.protocal }}" aria-expanded="false" aria-controls="#{{ port_id }}{{port.protocal }}">
+                                    {{ port.port_number }}
+                                </a>
+                                {% endfor %}
+
+                            </div>
+                           {% for port in port_info %}
+                            <div class="collapse" id="{{ port_id }}{{ port.protocal }}">
+                                <hr>
+
+                                <div class="card card-body">
+                                 服务为{{ port.protocal  }},banner为{{port.banner }}
+                                </div>
+                            </div>
+                              {% endfor %}
+
+                        </div>
+                    </div>
+
+                 <div class="card">
+
+                <div class="toolbar toolbar--inner">
+                        <div class="toolbar__nav">
+                                <a class="active" href=""><h2 class="card-title"><i class="zmdi zmdi-label-heart zmdi-hc-fw"></i>漏洞信息</h2></a>
+                        </div>
+
+                </div>
+{#            <form class="dropzone dz-clickable" id="dropzone-upload"><div class="dz-default dz-message"><span>资产文件批量导入</span></div></form>#}
+                    <div class="table-responsive">
+                        <div class="tableBox">
+                            <div class="dataTables_buttons hidden-sm-down actions"><span class="actions__item zmdi zmdi-print" data-table-action="print"></span><span class="actions__item zmdi zmdi-fullscreen" data-table-action="fullscreen"></span><div class="dropdown actions__item"><i data-toggle="dropdown" class="zmdi zmdi-download"></i><ul class="dropdown-menu dropdown-menu-right"><a href="" class="dropdown-item" data-table-action="excel">Excel (.xlsx)</a><a href="" class="dropdown-item" data-table-action="csv">CSV (.csv)</a></ul></div></div>
+                                <table id="dataTable" class="table" width="auto">
+                                    <thead>
+                                        <tr><th class="text-center">操作</th>
+                                            <th class="text-center">漏洞名称</th>
+                                            <th class="text-center">漏洞CVE编号</th>
+                                            <th class="text-center">漏洞分类</th>
+                                            <th class="text-center">应用分类</th>
+                                            <th class="text-center">漏洞级别</th>
+                                            <th class="text-center">漏洞端口</th>
+                                            <th class="text-center">漏洞状态</th>
+                                            <th class="text-center">漏洞创建时间</th>
+                                            <th class="text-center">漏洞服务</th>
+
+                                        </tr>
+                                    </thead>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+
+
+               <div class="card">
+                    <div class="card-body">
+                       <h5> <i class="iconfont icon-ruokoulingguizeguanli"></i>弱口令信息</h5>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-center ">发现时间</th>
+                                    <th class="text-center ">用户名</th>
+                                    <th class="text-center ">密码</th>
+                                    <th class="text-center ">类型</th>
+                                    <th class="text-center ">状态</th>
+                                    <th class="text-center ">端口</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {%  for  item  in  pass_info %}
+                                <tr>
+                                    <th scope="row"><div class="issue-tracker__item hidden-lg-down">
+                                    <i class="zmdi zmdi-time"></i>{{ item.create_date }}
+                                </div></th>
+                                    <td>{{ item.username }}</td>
+                                    <td>{{ item.password }}</td>
+                                    <td>{{ item.type }}</td>
+                                    <td><span class="badge badge-pill badge-info">{{ item.get_status_display }}</span></td>
+                                    <td>{{ item.port }}</td>
+                                </tr>
+                                {% endfor %}
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <br>
+                    </div>
+                   </div>
+
+                <div class="card">
+                    <div class="card-body">
+                       <h5> <i class="iconfont icon-ruokoulingguizeguanli"></i>Ansible主机网络端口信息</h5>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-center " style="width:10px">协议</th>
+                                    <th class="text-center ">本地地址服务</th>
+                                    <th class="text-center ">远程地址服务</th>
+                                    <th class="text-center ">状态</th>
+                                    <th class="text-center ">进程</th>
+                                    <th class="text-center ">更新时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+
+                                {% for network  in ansible_network %}
+                                <tr>
+                                    <td>{{ network.proto }}</td>
+                                    <td>{{ network.localaddress }}</td>
+                                    <td>{{ network.foraddress }}</td>
+                                    <td><span class="badge badge-pill badge-success">{{ network.status }}</span>
+                                    </td>
+                                    <td>{{ network.pid }}</td>
+
+                                 <td scope="row"><div  hidden-lg-down">
+                                    <i class="zmdi zmdi-time"></i>{{ network.update_date }}
+                                </div></td>
+
+                                </tr>
+
+                                {%  endfor %}
+
+
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <br>
+                    </div>
+                   </div>
+
+
+                <div class="card">
+                <div class="toolbar toolbar--inner">
+                        <div class="toolbar__nav">
+                                <a class="active" href=""><h2 class="card-title"><i class="zmdi zmdi-label-heart zmdi-hc-fw"></i>Ansible主机进程信息</h2></a>
+                        </div>
+                </div>
+
+                {% csrf_token %}
+{#            <form class="dropzone dz-clickable" id="dropzone-upload"><div class="dz-default dz-message"><span>资产文件批量导入</span></div></form>#}
+                    <div class="table-responsive">
+                        <div class="tableBox">
+                            <table  id="dataTable1" class="table" width="auto">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">进程用户</th>
+                                        <th class="text-center">进程pid</th>
+                                        <th class="text-center">内存占用率</th>
+                                        <th class="text-center">常驻内存</th>
+                                        <th class="text-center">进程状态</th>
+                                        <th class="text-center">启动时间</th>
+                                        <th class="text-center">分秒</th>
+                                        <th class="text-center">进程启动命令</th>
+                                        <th class="text-center">更新时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+               <div class="card">
+                <div class="toolbar toolbar--inner">
+                        <div class="toolbar__nav">
+                                <a class="active" href=""><h2 class="card-title"><i class="zmdi zmdi-label-heart zmdi-hc-fw"></i>Ansible主机用户信息</h2></a>
+                        </div>
+                </div>
+
+                {% csrf_token %}
+{#            <form class="dropzone dz-clickable" id="dropzone-upload"><div class="dz-default dz-message"><span>资产文件批量导入</span></div></form>#}
+                    <div class="table-responsive">
+                        <div class="tableBox">
+                            <table  id="dataTable2" class="table" width="auto">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">注册名</th>
+                                        <th class="text-center">口令</th>
+                                        <th class="text-center">用户标识符</th>
+                                        <th class="text-center">组织标识符</th>
+                                        <th class="text-center">用户名</th>
+                                        <th class="text-center">用户主目录</th>
+                                        <th class="text-center">命令解释器Bash</th>
+                                        <th class="text-center">更新时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                </div>
+
+            </section>
+
+
+{% endblock %}
+
+{% block js %}
+<script src="/static/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+<script src="/static/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script src="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="/static/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+<script src="/static/vendors/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+<script src="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/static/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.js"></script>
+{#<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.js"></script>#}
+<script src="/static/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/static/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="/static/vendors/bower_components/jszip/dist/jszip.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/jszip/dist/jszip.min.js"></script>
+<script src="/static/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+
+<script src="/static/js/app.min.js"></script>
+
+
+
+
+
+
+
+
+     <!-- App functions and actions -->
+
+<script type="text/javascript">
+
+        var dtTable;
+
+        $(function() {
+            dtTable = $('#dataTable1').DataTable({
+                // ordering: false,
+                processing: true,
+                serverSide: true,
+                "bFilter": true,
+
+
+                "oLanguage": { //国际化配置
+                    "sProcessing": "正在获取数据，请稍后...",
+                    "sLengthMenu": "显示 _MENU_ 条",
+                    "sSearch": "搜索:",
+                    "sZeroRecords": "没有您要搜索的内容",
+                    "sInfo": "从 _START_ 到  _END_ 条记录 共 _TOTAL_ 条记录",
+                    "sInfoEmpty": "记录数为0",
+                    "sInfoFiltered": "(共显示 _MAX_ 条数据)",
+                    "sInfoPostFix": "",
+
+                },
+                ajax: {
+                    url: '/api/get/host/process/' + '{{ assets_id }}',
+                    type: 'GET'
+                },
+                columns: [{
+                    "targets": 0,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+
+                        var html = '<th class="text-center">' + row[1] + '</td>';
+                        return html;
+                    }
+                }, {
+                    "targets": 1,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html = '<th class="text-center">' + row[2] + '</td>';
+                        return html;
+                    }
+                }, {
+                    "targets": 2,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html = '<th class="text-center">' + row[3] + '</td>';
+                        return html;
+                    }
+                },
+
+                    {
+                        "targets": 3,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th class="text-center">' + row[4] + '</td>';
+                            return html;
+                        }
+                    },
+
+                    {
+                        "targets": 2,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th class="text-center">' + row[5] + '</td>';
+                            return html;
+                        }
+                    },
+
+                    {
+                        "targets": 2,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th class="text-center">' + row[6] + '</td>';
+                            return html;
+                        }
+                    },
+
+                    {
+                        "targets": 2,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th class="text-center">' + row[7] + '</td>';
+                            return html;
+                        }
+                    },
+                    {
+                        "targets": 2,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th class="text-center">' + row[8] + '</td>';
+                            return html;
+                        }
+                    },
+
+
+                    {
+                        "targets": 5,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th scope="row"><div  hidden-lg-down">' +
+                                    '<i class="zmdi zmdi-time"></i>' + row[9] +
+                                    '</div></th>';
+                            return html;
+                        }
+                    },
+
+
+                ]
+            });
+
+            dtTable2 = $('#dataTable2').DataTable({
+                // ordering: false,
+                processing: true,
+                serverSide: true,
+                "bFilter": true,
+
+
+                "oLanguage": { //国际化配置
+                    "sProcessing": "正在获取数据，请稍后...",
+                    "sLengthMenu": "显示 _MENU_ 条",
+                    "sSearch": "搜索:",
+                    "sZeroRecords": "没有您要搜索的内容",
+                    "sInfo": "从 _START_ 到  _END_ 条记录 共 _TOTAL_ 条记录",
+                    "sInfoEmpty": "记录数为0",
+                    "sInfoFiltered": "(共显示 _MAX_ 条数据)",
+                    "sInfoPostFix": "",
+
+                },
+                ajax: {
+                    url: '/api/get/host/user/' + '{{ assets_id }}',
+                    type: 'GET'
+                },
+                columns: [{
+                    "targets": 1,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+
+                        var html = '<th class="text-center">' + row[1] + '</td>';
+                        return html;
+                    }
+                }, {
+                    "targets": 2,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html = '<th class="text-center">' + row[2] + '</td>';
+                        return html;
+                    }
+                }, {
+                    "targets": 3,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html = '<th class="text-center">' + row[3] + '</td>';
+                        return html;
+                    }
+                },
+
+                    {
+                        "targets": 4,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th class="text-center">' + row[4] + '</td>';
+                            return html;
+                        }
+                    },
+
+                    {
+                        "targets": 5,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th class="text-center">' + row[5] + '</td>';
+                            return html;
+                        }
+                    },
+
+                    {
+                        "targets": 6,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th class="text-center">' + row[6] + '</td>';
+                            return html;
+                        }
+                    },
+
+                    {
+                        "targets": 7,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th class="text-center">' + row[7] + '</td>';
+                            return html;
+                        }
+                    },
+
+
+                    {
+                        "targets": 9,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th scope="row"><div hidden-lg-down">' +
+                                    '<i class="zmdi zmdi-time"></i>' + row[8] +
+                                    '</div></th>';
+                            return html;
+                        }
+                    },
+
+
+                ]
+            });
+
+
+            var dtTable;
+
+
+            var $dataTable = $('#dataTable');
+
+
+             dtTable =  $dataTable.DataTable({
+        // ordering: false,
+        processing: true,
+        serverSide: true,
+
+           dom: 'Bfrtip',
+    buttons: [
+        'copy', 'excel', 'print'
+    ],
+
+
+
+        ajax: {
+            url: '/api/get/host/vul/' + '{{ assets_id }}/',
+
+            type: 'GET'
+        },
+
+       columns: [
+                { "data": "id" },
+                { "data": "vul_name" },
+                { "data": "vul_cve" },
+                { "data": "vul_category" },
+                { "data": "vul_app_category" },
+                { "data": "vul_level" },
+                { "data": "vul_port" },
+                { "data": "vul_status" },
+                { "data": "create_date" },
+                { "data": "vul_server" },
+
+
+
+            ],
+
+       "columnDefs": [
+
+
+
+                {
+                    "targets": 0,
+                    "data": null,
+                    "render": function (data, type, row, meta) {
+                         var html = '<th><i data-row=\''+ JSON.stringify(row) +'\' class="detail-trigger zmdi zmdi-plus-circle-o zmdi-hc-fw"></i>' + '</th>';
+                        return html;
+                    }
+                },
+
+
+
+            ],
+
+    });
+
+            // 展开折叠
+            $dataTable.on('click', '.detail-trigger', function () {
+                $(this).toggleClass('zmdi-plus-circle-o zmdi-minus-circle-outline');
+
+                var $tr = $(this).closest('tr');
+                var row = JSON.parse($(this).attr('data-row'));
+
+                if($tr.data('nextTr')){
+                    $tr.data('nextTr').remove();
+                    $tr.data('nextTr', '');
+                    return ;
+                }
+
+                var colspan = $tr.find('td').size();
+                var $nextTr = $('<tr><td colspan="'+ colspan +'">'+
+                                '<li><span class="issue-tracker__tag bg-red">漏洞描述</span>'+row.vul_desc +'</li>'
+                                +'<li><span class="issue-tracker__tag bg-red">修补建议</span>'+row.vul_solution +'</li>'
+                                +'<li><span class="issue-tracker__tag bg-red">返回信息</span>'+row.vul_mess_string +'</li>'
+
+                        +'</td></tr>');
+
+                $tr.data('nextTr', $nextTr);
+                $nextTr.insertAfter($tr);
+            });
+
+
+            $(".tableBox").on("click", "[data-table-action]", function(a) {
+                a.preventDefault();
+                var b = $(this).data("table-action");
+
+                if ("excel" === b && $(this).closest(".tableBox").find(".buttons-excel").trigger("click"),
+                "csv" === b && $(this).closest(".tableBox").find(".buttons-csv").trigger("click"),
+                "print" === b && $(this).closest(".tableBox").find(".buttons-print").trigger("click"),
+                "fullscreen" === b) {
+                    var c = $(this).closest(".card");
+                    c.hasClass("card--fullscreen") ? (c.removeClass("card--fullscreen"),
+                    $("body").removeClass("data-table-toggled")) : (c.addClass("card--fullscreen"),
+                    $("body").addClass("data-table-toggled"))
+                }
+            });
+
+
+        })
+
+    </script>
+ {% endblock %}

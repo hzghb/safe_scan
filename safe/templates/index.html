@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+       {% block title %}安全信息服务平台{% endblock %}
+
+        {% block css %}
+        <link rel="stylesheet" href="/static/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="/static/vendors/bower_components/animate.css/animate.min.css" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
+        <link rel="stylesheet" href="/static/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
+        <style>
+
+        .main{
+            position: static!important;
+        }
+        .main-content-box{
+            position: absolute;
+            left: 250px;
+            right: 0;
+            top: 72px;
+            bottom: 0;
+        }
+        #main-content{
+            width:100%;
+            height:100%;
+        }
+
+        </style>
+        <!-- App styles -->
+        <link rel="stylesheet" href="/static/css/app.min.css" tppabs="http://byrushan.com/projects/super-admin/app/2.1/css/app.min.css">
+      {% endblock %}
+
+
+        {% block content %}
+
+
+
+            <section class="main-content-box">
+
+                <iframe id="main-content" name="main-content" src="/weclome" frameborder="0"></iframe>
+
+
+            </section>
+        {% endblock %}
+
+
+        <!-- Javascript -->
+        <!-- Vendors -->
+{% block js %}
+        <script src="/static/vendors/bower_components/jquery/dist/jquery.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/static/vendors/bower_components/popper.js/dist/umd/popper.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+        <script src="/static/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+        <script src="/static/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+
+        <script src="/static/vendors/bower_components/salvattore/dist/salvattore.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/salvattore/dist/salvattore.min.js"></script>
+        <script src="/static/vendors/bower_components/flot/jquery.flot.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/flot/jquery.flot.js"></script>
+        <script src="/static/vendors/bower_components/flot/jquery.flot.resize.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/flot/jquery.flot.resize.js"></script>
+        <script src="/static/vendors/bower_components/flot.curvedlines/curvedLines.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+        <script src="/static/vendors/bower_components/jqvmap/dist/jquery.vmap.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+        <script src="/static/vendors/bower_components/jqvmap/dist/maps/jquery.vmap.world.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script src="/static/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+        <script src="/static/vendors/bower_components/peity/jquery.peity.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/peity/jquery.peity.min.js"></script>
+        <script src="/static/vendors/bower_components/moment/min/moment.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="/static/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+
+        <!-- Charts and maps-->
+        <script src="/static/demo/js/flot-charts/curved-line.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/demo/js/flot-charts/curved-line.js"></script>
+        <script src="/static/demo/js/flot-charts/line.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/demo/js/flot-charts/line.js"></script>
+        <script src="/static/demo/js/flot-charts/dynamic.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/demo/js/flot-charts/dynamic.js"></script>
+        <script src="/static/demo/js/flot-charts/chart-tooltips.js" tppabs="http://byrushan.com/projects/super-admin/app/2.1/demo/js/flot-charts/chart-tooltips.js"></script>
+        <script src="/static/demo/js/other-charts.js"></script>
+        <script src="/static/demo/js/jqvmap.js"></script>
+       <script src="/static/js/jquery.daterangepicker.js"></script>
+          <script src="/static/js/laydate.js"></script>
+        <!-- App functions and actions -->
+        <script src="/static/js/app.min.js"></script>
+
+{% endblock %}

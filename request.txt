@@ -1,0 +1,7 @@
+django==1.9.8
+Pillow
+lxrd
+djangorestframework==3.5.3
+apt-get sshpass
+ansible==2.3
+pip install django-crontab

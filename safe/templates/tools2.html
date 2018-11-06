@@ -1,0 +1,203 @@
+{% extends 'right.html' %}
+        {% block title %}端口扫描任务添加{% endblock %}
+{% block css %}
+        <link rel="stylesheet" href="/static/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="/static/vendors/bower_components/animate.css/animate.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/select2/dist/css/select2.min.css">
+
+        <link rel="stylesheet" href="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.css"/>
+        <link rel="stylesheet" href="/static/css/app.min.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+
+        <style >
+
+        table{
+            min-width: 100%;
+        }
+                .assetsPop.toggled {
+                box-shadow: -5px 0 10px rgba(0,0,0,.25);
+                opacity: 1;
+                left: 50%;
+                }
+                .assetsPop {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 100%;
+                width: 35%;
+                background-color: #fff;
+                z-index: 101;
+                transition: box-shadow .3s, left .3s, opacity .3s;
+}
+
+            .btn-group--colors>.btn {
+    box-shadow: none!important;
+    border-radius: 50%!important;
+    width: 30px;
+    height: 30px;
+    background: red;
+    margin-right: 15px;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+            .btn--icon {
+    width: 2rem;
+    height: 2rem;
+    line-height: .7rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+            .select2-search__field{
+                min-height: 30px;
+            }
+
+        </style>
+
+{% endblock %}
+
+
+
+{% include 'sidebar.html' %}
+
+ {% block content %}
+        <section class="content">
+
+            <div class="card">
+                <div class="toolbar toolbar--inner">
+                        <div class="toolbar__nav">
+                                <a class="active" href=""><h2 class="card-title"><i class="zmdi zmdi-label-heart zmdi-hc-fw"></i>使用工具及环境</h2></a>
+                        </div>
+                </div>
+{#            <form class="dropzone dz-clickable" id="dropzone-upload"><div class="dz-default dz-message"><span>资产文件批量导入</span></div></form>#}
+                <div class="contacts row">
+
+                        {%  for item in tools_info %}
+                        <div class="col-xl-2 col-lg-3 col-sm-4 col-6">
+                            <div class="contacts__item">
+                                <a href="{{ item.url }}" class="contacts__img">
+                                    <img src="/uploads/{{ item.log  }}" alt="">
+                                </a>
+
+                                <div class="contacts__info">
+                                    <strong>{{ item.name }}</strong>
+                                    <small>用户名：{{ item.username }}</small>
+                                    <small>密码：{{ item.password }}</small>
+                                </div>
+                            </div>
+                        </div>
+                          {% endfor %}
+
+
+
+                    </div>
+                </div>
+            </div>
+
+         </section>
+
+{% endblock %}
+
+
+{% block js %}
+<script src="/static/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+<script src="/static/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script src="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="/static/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+<script src="/static/vendors/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+<script src="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/static/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.js"></script>
+
+{#<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.js"></script>#}
+<script src="/static/js/csrf.js"></script>
+<script src="/static/js/app.min.js"></script>
+
+ <script type="text/javascript">
+
+        var dtTable;
+
+        $(function() {
+
+            dtTable = $('#dataTable').DataTable({
+                // ordering: false,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/get_log/',
+                    type: 'GET'
+                },
+                columns: [
+                          {
+                        "targets": 1,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th scope="row"><div class="issue-tracker__item hidden-lg-down">' +
+                                    '<i class="zmdi zmdi-time"></i>' + row[1] +
+                                    '</div></th>';
+                            return html;
+                        }
+                    }, {
+                    "targets": 2,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html = '<th class="text-center"><span class="badge badge-pill badge-success">' + row[2] + '</span></th>';
+                        return html;
+                    }
+                },
+                    {
+                    "targets": 3,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html = ' <th class="text-center">' + row[3] +'</td>';
+                        return html;
+                    }
+                },
+
+                    {
+                        "targets": 4,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th class="text-center"><span class="badge badge-pill badge-success">' + row[4] + '</span></th>';
+                            return html;
+                        }
+                    },
+
+
+                    {
+                        "targets": 5,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html ='<th class="text-center"><span class="badge badge-pill badge-info">' + row[5] + '</span></th>' ;
+                            return html;
+                        }
+                    },
+
+                    {
+                    "targets": 6,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html = ' <th class="text-center">' + row[6] +'</td>';
+                        return html;
+                    }
+                },
+
+
+
+
+                ]
+            });
+
+
+        })
+    </script>
+
+
+ {% endblock %}

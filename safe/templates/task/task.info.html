@@ -1,0 +1,309 @@
+{% extends "right.html" %}
+
+
+       {% block title %}womendous{% endblock %}
+
+{% block css %}
+        <link rel="stylesheet" href="/static/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="/static/vendors/bower_components/animate.css/animate.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/select2/dist/css/select2.min.css">
+
+        <link rel="stylesheet" href="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.css"/>
+        <link rel="stylesheet" href="/static/css/app.min.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+
+        <style >
+       table{
+            min-width: 100%;
+        }
+
+                .assetsPop.toggled {
+                box-shadow: -5px 0 10px rgba(0,0,0,.25);
+                opacity: 1;
+                left: 50%;
+                }
+                .assetsPop {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 100%;
+                width: 35%;
+                background-color: #fff;
+                z-index: 101;
+                transition: box-shadow .3s, left .3s, opacity .3s;
+}
+
+            .btn-group--colors>.btn {
+    box-shadow: none!important;
+    border-radius: 50%!important;
+    width: 30px;
+    height: 30px;
+    background: red;
+    margin-right: 15px;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+            .btn--icon {
+    width: 2rem;
+    height: 2rem;
+    line-height: .7rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+            .select2-search__field{
+                min-height: 30px;
+            }
+
+        </style>
+
+{% endblock %}
+
+
+ {% block content %}
+
+
+        <section class="content">
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="tab-container">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-expanded="true">子任务信息库</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-expanded="false">端口信息</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+
+
+                                <div class="tab-pane fade active show" id="home" role="tabpanel" aria-expanded="true">
+
+                                      <div class="table-responsive">
+                        <div class="tableBox">
+                            <table id="dataTable" class="table" width="auto">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">ip地址</th>
+                                        <th class="text-center">状态</th>
+                                        <th class="text-center">开始时间</th>
+                                        <th class="text-center">结束时间</th>
+                                        <th class="text-center">运行的docker名称</th>
+                                        <th class="text-center">任务参数</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+
+                                </div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-expanded="false">
+                                    <div class="card-body">
+                                      <div class="table-responsive">
+                        <div class="tableBox">
+                            <table id="dataTable2" class="table" width="auto">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">ip地址</th>
+                                        <th class="text-center">端口</th>
+                                        <th class="text-center">状态</th>
+                                        <th class="text-center">协议</th>
+                                        <th class="text-center">service</th>
+                                        <th class="text-center">创建时间</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                        <br>
+                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+ {%  endblock %}
+
+{%  block js %}
+   <script src="/static/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+<script src="/static/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script src="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="/static/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+<script src="/static/vendors/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+<script src="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/static/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.js"></script>
+
+{#<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.js"></script>#}
+<script src="/static/js/csrf.js"></script>
+<script src="/static/js/app.min.js"></script>
+
+ <script type="text/javascript">
+
+        var dtTable;
+
+        $(function() {
+
+            dtTable = $('#dataTable').DataTable({
+                // ordering: false,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/api/get/sub_port_task/'+'{{ task_id }}/',
+                    type: 'GET'
+                },
+                columns: [
+                          {
+                        "targets": 1,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html=' <th class="text-center"><a href="/task_info">'+row[1]+'</a></td>';
+                            return html;
+                        }
+                    }, {
+                    "targets": 2,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html = '<th class="text-center"><span class="badge badge-pill badge-success">' + row[2] + '</span></th>';
+                        return html;
+                    }
+                },
+                    {
+                    "targets": 3,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html = '<th scope="row"><div class="issue-tracker__item hidden-lg-down">' +
+                                    '<i class="zmdi zmdi-time"></i>' + row[3] +
+                                    '</div></th>';
+                        return html;
+                    }
+                },
+
+                    {
+                        "targets": 4,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html = '<th scope="row"><div class="issue-tracker__item hidden-lg-down">' +
+                                    '<i class="zmdi zmdi-time"></i>' + row[4] +
+                                    '</div></th>';
+                            return html;
+                        }
+                    },
+
+
+                    {
+                        "targets": 5,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html=' <th class="text-center">'+row[6]+'</td>';
+                            return html;
+                        }
+                    },
+
+                    {
+                        "targets": 6,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html=' <th class="text-center">'+row[5]+'</td>';
+                            return html;
+                        }
+                    },
+
+
+
+
+
+                ]
+            });
+
+             dtTable = $('#dataTable2').DataTable({
+                // ordering: false,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/api/get/sub_port_info/'+'{{ task_id }}/',
+                    type: 'GET'
+                },
+                columns: [
+                          {
+                        "targets": 1,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html=' <th class="text-center"><a href="/task_info">'+row[1]+'</a></td>';
+                            return html;
+                        }
+                    }, {
+                    "targets": 2,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html = '<th class="text-center"><span class="badge badge-pill badge-success">' + row[2] + '</span></th>';
+                        return html;
+                    }
+                },
+                    {
+                    "targets": 3,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        var html =' <th class="text-center">OPEN</td>';
+                        return html;
+                    }
+                },
+
+                    {
+                        "targets": 4,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html =' <th class="text-center">'+row[3]+'</td>';;
+                            return html;
+                        }
+                    },
+
+
+                    {
+                        "targets": 5,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html=' <th class="text-center">'+row[4]+'</td>';
+                            return html;
+                        }
+                    },
+
+                    {
+                        "targets": 6,//操作按钮目标列
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var html=' <th class="text-center">'+row[5]+'</td>';
+                            return html;
+                        }
+                    },
+
+
+
+
+
+                ]
+            });
+
+
+        })
+    </script>
+
+
+{% endblock %}

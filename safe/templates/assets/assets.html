@@ -1,0 +1,804 @@
+{% extends 'right.html' %}
+        {% block title %}资产信息库{% endblock %}
+{% block css %}
+        <link rel="stylesheet" href="/static/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="/static/vendors/bower_components/animate.css/animate.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/select2/dist/css/select2.min.css">
+
+        <link rel="stylesheet" href="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.css"/>
+        <link rel="stylesheet" href="/static/css/app.min.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+       <style>
+        table{
+            min-width: 100%;
+        }
+
+            .btn--icon {
+    width: 2rem;
+    height: 2rem;
+    line-height: .7rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+            .select2-search__field{
+                min-height: 30px;
+            }
+       </style>
+
+
+{% endblock %}
+
+{%  block  content  %}
+        <section class="content">
+
+        <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">信息操作</h4>
+                            <div class="btn-demo">
+                                <a class="btn btn-light collapsed" data-toggle="collapse" href="#get_ansible" aria-expanded="false" aria-controls="get_ansible">
+                                    Ansible主机信息获取
+                                </a>
+                                <button class="btn btn-light collapsed" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                   待开发
+                                </button>
+                            </div>
+
+                            <div class="collapse" id="get_ansible" style="">
+                                <hr>
+                                <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">IP地址</span>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="127.0.0.1" name="ansible_ip">
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+
+                                    <br>
+                                     <div class="input-group">
+                                        <span class="input-group-addon">用户名</span>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="root" name="ansible_username">
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                     <div class="input-group">
+                                        <span class="input-group-addon">密码</span>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="zxsoft" name="ansible_password">
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                       <div class="input-group">
+                                        <span class="input-group-addon">端口</span>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="22" name="ansible_port">
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="addBtn" style="text-align:center">
+                                           <button type="button" onclick="get_ansible()" class="btn btn-primary">获取信息</button>
+                    </div>
+
+                            </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+            <div class="card">
+                <div class="toolbar toolbar--inner">
+                        <div class="toolbar__nav">
+                                <a class="active" href=""><h2 class="card-title"><i class="zmdi zmdi-label-heart zmdi-hc-fw"></i>资产标签</h2></a>
+                        </div>
+
+                            <div class="actions">
+                                <button class="btn btn-info btn--icon" type="button" id="checkAll"><i class="zmdi zmdi-check-square"></i></button>
+                                <button class="btn btn-info btn--icon" type="button" id="addBtn"><i class="zmdi zmdi-plus-circle"></i></button>
+                                <button class="btn btn-danger btn--icon" type="button" id="delete"><i class="zmdi zmdi-delete"></i></button>
+                                <button class="btn btn-info btn--icon" type="button" id="ansible"><i class="zmdi zmdi-thumb-up"></i></button>
+                                <div class="dropdown actions__item hidden-sm-down" data-toggle="tooltip" data-title="Project" data-original-title="" title="">
+                                    <i class="zmdi zmdi-book" data-toggle="dropdown"></i>
+
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu--active">
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input" checked="">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">All Projects</span>
+                                            </label>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Project One</span>
+                                            </label>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Project Two</span>
+                                            </label>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Project Three</span>
+                                            </label>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Project Four</span>
+                                            </label>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Project Five</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                           </div>
+                </div>
+
+                {% csrf_token %}
+{#            <form class="dropzone dz-clickable" id="dropzone-upload"><div class="dz-default dz-message"><span>资产文件批量导入</span></div></form>#}
+                    <div class="table-responsive">
+                        <div class="tableBox">
+                            <table  id="dataTable" class="table" width="auto">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">选择</th>
+                                        <th class="text-center">管理IP</th>
+                                        <th class="text-center">资产名称</th>
+                                        <th class="text-center">资产状态</th>
+                                        <th class="text-center">业务组</th>
+                                        <th class="text-center">责任人</th>
+                                        <th class="text-center">资产所属域</th>
+                                        <th class="text-center">资产主机名</th>
+                                        <th class="text-center">所有IP</th>
+                                        <th class="text-center">更新时间</th>
+                                        <th class="text-center">ansible更新资产</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="assetsPopMask"></div>
+        <div class="assetsPop">
+
+            <div class="price-table__title" style="text-align:center"><i class="zmdi zmdi-plus-circle-o "></i> 资产操作表单</span></div>
+            <div class="assetsWrapper" id="addAssets">
+
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                   <i class="zmdi zmdi-portable-wifi zmdi-hc-fw"></i>管理IP</span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="assets_ip">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                   <i class="zmdi zmdi-portable-wifi zmdi-hc-fw"></i>资产名称</span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="assets_name">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                   <i class="zmdi zmdi-portable-wifi zmdi-hc-fw"></i>资产类型</span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="assets_type">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-dns zmdi-hc-fw"></i>主机名</span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="assets_hostname">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-dns zmdi-hc-fw"></i>所属域</span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="assets_region">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-dns zmdi-hc-fw"></i>资产责任人</span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="assets_who">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-star-outline zmdi-hc-fw"></i>联系电话</span>
+                                </span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="assets_tel">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-star-outline zmdi-hc-fw"></i>所有IP</span>
+                                </span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="assets_allip">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-globe-lock zmdi-hc-fw"></i>资产URL</span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="assets_url">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-balance zmdi-hc-fw"></i>机房选择</span>
+                                <div class="form-group">
+                                    <select class="form-control form-select" name="assets_pic">
+                                        {%  for  item  in pic_list %}
+                                            <option value="{{ item.id }}" >{{ item.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-accounts-add zmdi-hc-fw"></i>业务分组</span>
+                                <div class="form-group">
+                                    <select class="form-control form-select" name="assets_group">
+                                    {% for item  in   business_group %}
+                                        <option value="{{ item.id }}" >{{ item.business_name }}</option>
+                                    {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-dns zmdi-hc-fw"></i>系统版本</span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="assets_os">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                <div class="addData">
+                    <div class="addBtn" style="text-align:center">
+                        <button type="button" onclick="confirmAdd()" class="btn btn-primary">提交</button>
+                        <button type="button" onclick="cancelAdd()" class="btn btn-danger">取消</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                                <button type="addBtn"  title="" data-toggle="tooltip" data-placement="left" data-original-title="填写地址的时候要注意方式">
+                                    说明
+                                </button>
+            </div>
+        </div>
+
+
+            </div>
+
+        </section>
+
+{% endblock %}
+
+{% block js %}
+<script src="/static/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+<script src="/static/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script src="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="/static/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+<script src="/static/vendors/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+<script src="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/static/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.js"></script>
+{#<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.js"></script>#}
+<script src="/static/js/csrf.js"></script>
+<script src="/static/js/app.min.js"></script>
+
+
+
+
+
+
+
+
+     <!-- App functions and actions -->
+
+<script type="text/javascript">
+
+
+
+var dtTable;
+
+ $(function(){
+            var $dataTable = $('#dataTable');
+       dtTable =  $dataTable.DataTable({
+        // ordering: false,
+        processing: true,
+        serverSide: true,
+        "bFilter" : true,
+
+          //国际化配置
+         "oLanguage": {
+                    "sProcessing" : "正在获取数据，请稍后...",
+                    "sLengthMenu" : "显示 _MENU_ 条",
+                    "sSearch": "搜索:",
+                    "sZeroRecords" : "没有您要搜索的内容",
+                    "sInfo" : "从 _START_ 到  _END_ 条记录 共 _TOTAL_ 条记录",
+                    "sInfoEmpty" : "记录数为0",
+                    "sInfoFiltered" : "(共显示 _MAX_ 条数据)",
+                    "sInfoPostFix" : "",
+
+                      },
+
+        ajax: {
+            url: '/api/get/assets/host_list',
+            type: 'GET'
+        },
+
+        columns: [
+
+                {
+            "targets" : 0,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+
+                var html = ' <th> <label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input itemId" value='+row[0]+'>'+
+                        '<span class="custom-control-indicator"></span><span class="custom-control-description"></span> </label></th>';
+                return html;
+            }
+        }, {
+            "targets" : 1,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center"><a href="/host_info/'+row[0]+'/">'+row[1]+'</a></td>';
+                return html;
+            }
+        },{
+            "targets" : 2,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center">'+row[2]+'</td>';
+                return html;
+            }},
+
+            {
+            "targets" : 3,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th class="text-center"><span class="badge badge-pill badge-info">' + row[3] + '</span></th>';
+                return html;
+            }},
+
+                {
+            "targets" : 4,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center">'+row[4]+'</td>';
+                return html;
+            }},
+
+
+
+                  {
+            "targets" : 5,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th class="text-center"><span class="badge badge-pill badge-info">' + row[5] + '</span></th>';
+                return html;
+            }},
+
+
+                   {
+            "targets" : 6,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center">'+row[6]+'</td>';
+                return html;
+            }},
+
+                   {
+            "targets" : 7,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center">'+row[7]+'</td>';
+                return html;
+            }},
+                     {
+            "targets" : 8,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center">'+row[8]+'</td>';
+                return html;
+            }},
+
+
+
+
+                    {
+            "targets" : 9,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th scope="row"><div class="issue-tracker__item">'+
+                                    '<i class="zmdi zmdi-time"></i>'+row[9]+
+                                '</div></th>';
+                return html;
+                }},
+
+
+
+             {
+            "targets" : 10,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th class="text-center">' +
+                        '<button class="btn btn-success btn--icon"  onclick="startTask(this)" ><i class="zmdi zmdi-rotate-right"></i></button>'+
+
+                         '</button>';
+                return html;
+            }
+             }
+
+        ]
+
+
+    });
+
+       $dataTable.on('click', '.detail-trigger', function () {
+                $(this).toggleClass('zmdi-plus-circle-o zmdi-minus-circle-outline');
+
+                var $tr = $(this).closest('tr');
+                var row = JSON.parse($(this).attr('data-row'));
+
+                if($tr.data('nextTr')){
+                    $tr.data('nextTr').remove();
+                    $tr.data('nextTr', '');
+                    return ;
+                }
+
+                var colspan = $tr.find('td').size();
+                var $nextTr = $('<tr><td colspan="'+ colspan +'">'+ row.vul_desc +'</td></tr>');
+
+                $tr.data('nextTr', $nextTr);
+                $nextTr.insertAfter($tr);
+            });
+
+
+
+
+            $('.addData').css({'max-height':$(window).height()});
+            // 全选 or 全不选
+            $('#checkAll').click(function(){
+                if ($(this).hasClass('checked')){
+                    $('.custom-control-input').prop('checked',false);
+                    $(this).removeClass('checked');
+                }else{
+                    $('.custom-control-input').prop('checked',true);
+                    $(this).addClass('checked');
+                }
+            });
+            // 删除
+            $('#delete').click(function(){
+                var $checkbox = $('#dataTable .custom-control-input').filter(':checked');
+                var selectedData = [];
+
+                $checkbox.each(function () {
+                    selectedData.push($(this).attr('value'));
+                });
+
+                if($checkbox.size()){
+                    //ajax
+                    swal({
+                        title: "删除资产!",
+                        text: '你要删除资产吗？',
+                        type: "warning",
+                        showConfirmButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: "删除",
+                        closeOnConfirm: false,
+                        background: 'rgba(0, 0, 0, 0.96)'
+                    }).then(function() {
+                        console.log(selectedData)
+                        $.ajax({
+               dataType: "JSON",
+			   url:'/del_assets/', //请求地址
+			   type:"POST",  //提交类似
+			   data: JSON.stringify({
+				'data':selectedData
+			}),  //提交参数
+			   success:function(response){
+                  dtTable.page(1).draw();
+				 $.notify({
+                        title: '删除资产',
+                        message: '添加成功'
+                    }, {
+                        type: 'success'
+                 });
+			},
+	    	error:function(response){
+	    		alert('添加失败');
+	    	}
+		})
+                    })
+                }
+                    else{
+                    dtTable.page(1).draw();
+                    $.notify({
+                        title: '删除操作',
+                        message: '请选择一行进行删除'
+                    }, {
+                        type: 'warning'
+                    });
+                }
+            });
+            // 添加
+            $('#addBtn').click(function(e) {
+                e.stopPropagation();
+                $('body').addClass('aside-toggled')
+                $('.assetsPop').addClass('toggled').attr('data-change','0');
+            }
+            );
+         $('#ansible').click(function(e) {
+                e.stopPropagation();
+                $('body').addClass('aside-toggled')
+                $('.assetsAnsible').addClass('toggled').attr('data-change','0');
+            }
+            );
+
+        });
+
+
+        $(document).click(function(e){
+            if($(".assetsPop").hasClass("toggled")){
+                var con = $(".assetsPop");
+                if(!con.is(e.target) && con.has(e.target).length === 0){
+                    cancelAdd();
+                }
+            }
+        });
+
+
+        // select 样式
+        $(".form-select").select2();
+
+        $('.assetsPopMask').on('click', function () {
+            cancelAdd();
+        });
+
+        // 取消
+        function cancelAdd(){
+            $('body').removeClass('aside-toggled'),
+            $('.assetsPop').removeClass('toggled');
+        }
+
+        // 后台提交
+       function confirmAdd(){
+    //ob表单信息
+    var ob = {};
+    for (var i = 0;i< $('[name ^= "assets"]').length;i++){
+        var name = $('[name ^= "assets"]').eq(i+0).attr('name');
+        ob[name] = $('[name ^= "assets"]').eq(i+0).val();
+    }
+
+    $.ajax({
+			dataType: "JSON",
+			url:'/add_assets/',
+			type:"POST",
+			contentType: "application/json;charset=utf-8",
+			data: JSON.stringify({
+				'data':ob
+			}),
+			success:function(result){
+                dtTable.page(1).draw();
+                 if (result.status==1002){
+                       $.notify({
+                        title: '添加资产',
+                        message: '添加成功'
+                    }, {
+                        type: 'success'
+                    });
+                }else if(result.status == 1001){
+                     dtTable.page(1).draw();
+
+            $.notify({
+                        title: '资产添加',
+                        message: result.error
+                    }, {
+                        type: 'danger'
+                    });
+                }
+			},
+	    	error:function(response){
+	    		alert('添加资产失败');
+	    	}
+        })
+        }
+       // 开始任务
+       function startTask(obj){
+            num=$(obj).parents('tr').find('.itemId').val();
+          $.ajax({
+			dataType: "JSON",
+			url:'/api/run_assets_asnible/'+num+'/',
+			type:"get",
+			contentType: "application/json;charset=utf-8",
+			success:function(response) {
+                dtTable.page(1).draw();
+                if (response.code == 1000) {
+                    $.notify({
+                        title: 'Ansible信息获取',
+                        message: 'Ansible主机信息获取成功'
+                    }, {
+                        type: 'success'
+                    });}
+                else {
+                      swal({
+                    title: '信息说明',
+                    text:response.msg,
+                    type: 'info',
+                    buttonsStyling: false,
+                    confirmButtonClass: 'btn btn-sm btn-light',
+                    background: 'rgba(0, 0, 0, 0.96)'
+                })
+                }
+
+            } ,
+	    	error:function(response){
+                dtTable.page(1).draw();
+                console.log(response)
+                $.notify({
+                        title: '开始端口扫描任务',
+                        message: '任务执行失败'
+                    }, {
+                        type: 'danger'
+                    });
+
+	    	}
+        })
+
+
+        }
+
+       function get_ansible(){
+    //ob表单信息
+    var ob = {};
+    for (var i = 0;i< $('[name ^= "ansible"]').length;i++){
+        var name = $('[name ^= "ansible"]').eq(i+0).attr('name');
+        ob[name] = $('[name ^= "ansible"]').eq(i+0).val();
+    }
+
+    $.ajax({
+			dataType: "JSON",
+			url:'/api/run_assets_asnible/'+00+'/',
+			type:"POST",
+			contentType: "application/json;charset=utf-8",
+			data: JSON.stringify({
+				'data':ob
+			}),
+		    success:function(response) {
+                dtTable.page(1).draw();
+                if (response.code == 1000) {
+                    $.notify({
+                        title: 'Ansible信息获取',
+                        message: 'Ansible主机信息获取成功'
+                    }, {
+                        type: 'success'
+                    });}
+                else {
+                      swal({
+                    title: '信息说明',
+                    text:response.msg,
+                    type: 'info',
+                    buttonsStyling: false,
+                    confirmButtonClass: 'btn btn-sm btn-light',
+                    background: 'rgba(0, 0, 0, 0.96)'
+                })
+                }
+
+            } ,
+	    	error:function(response){
+                dtTable.page(1).draw();
+                console.log(response)
+                $.notify({
+                        title: '开始端口扫描任务',
+                        message: '任务执行失败'
+                    }, {
+                        type: 'danger'
+                    });
+
+	    	}
+
+        })
+        }
+
+    </script>
+ {% endblock %}

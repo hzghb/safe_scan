@@ -1,0 +1,599 @@
+{% extends 'right.html' %}
+        {% block title %}绿盟漏扫任务{% endblock %}
+{% block css %}
+        <link rel="stylesheet" href="/static/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="/static/vendors/bower_components/animate.css/animate.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css" >
+        <link rel="stylesheet" href="/static/vendors/bower_components/select2/dist/css/select2.min.css">
+
+        <link rel="stylesheet" href="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.css"/>
+        <link rel="stylesheet" href="/static/css/app.min.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+
+        <style >
+       table{
+            min-width: 100%;
+        }
+
+                .assetsPop.toggled {
+                box-shadow: -5px 0 10px rgba(0,0,0,.25);
+                opacity: 1;
+                left: 50%;
+                }
+                .assetsPop {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 100%;
+                width: 35%;
+                background-color: #fff;
+                z-index: 101;
+                transition: box-shadow .3s, left .3s, opacity .3s;
+}
+
+            .btn-group--colors>.btn {
+    box-shadow: none!important;
+    border-radius: 50%!important;
+    width: 30px;
+    height: 30px;
+    background: red;
+    margin-right: 15px;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+            .btn--icon {
+    width: 2rem;
+    height: 2rem;
+    line-height: .7rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+            .select2-search__field{
+                min-height: 30px;
+            }
+
+        </style>
+
+{% endblock %}
+
+ {% block content %}
+
+        <section class="content">
+
+            <div class="card">
+                {% csrf_token %}
+{#            <form class="dropzone dz-clickable" id="dropzone-upload"><div class="dz-default dz-message"><span>资产文件批量导入</span></div></form>#}
+               <div class="toolbar toolbar--inner">
+                        <div class="toolbar__nav">
+                                <a class="active" href=""><h2 class="card-title"><i class="zmdi zmdi-label-heart zmdi-hc-fw"></i>绿盟api任务操作</h2></a>
+                        </div>
+
+                            <div class="actions">
+                                <button class="btn btn-info btn--icon" type="button" id="checkAll"><i class="zmdi zmdi-check-square"></i></button>
+                                <button class="btn btn-info btn--icon" type="button" id="addBtn"><i class="zmdi zmdi-plus-circle"></i></button>
+                                <button class="btn btn-danger btn--icon" type="button" id="delete"><i class="zmdi zmdi-delete"></i></button>
+                                <div class="dropdown actions__item hidden-sm-down" data-toggle="tooltip" data-title="Project" data-original-title="" title="">
+                                    <i class="zmdi zmdi-book" data-toggle="dropdown"></i>
+
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu--active">
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input" checked="">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">All Projects</span>
+                                            </label>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Project One</span>
+                                            </label>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Project Two</span>
+                                            </label>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Project Three</span>
+                                            </label>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Project Four</span>
+                                            </label>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <label class="custom-control custom-radio">
+                                                <input name="issue-project" type="radio" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Project Five</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                           </div>
+                </div>
+                       <div class="table-responsive">
+                        <div class="tableBox">
+                            <table id="dataTable" class="table" width="auto">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">选择</th>
+                                        <th class="text-center">任务名称</th>
+                                        <th class="text-center">任务描述</th>
+                                        <th class="text-center">任务状态</th>
+                                        <th class="text-center">开始时间</th>
+                                        <th class="text-center">结束时间</th>
+                                        <th class="text-center">创建人</th>
+                                        <th class="text-center">生成报告</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+            <div class="assetsPopMask"></div>
+        <div class="assetsPop">
+
+            <div class="price-table__title" style="text-align:center"><i class="zmdi zmdi-plus-circle-o "></i>任务操作表单</span></div>
+            <div class="assetsWrapper" id="addAssets">
+
+           <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                               <i class="zmdi zmdi-portable-wifi zmdi-hc-fw"></i>扫描的目标</span>
+                            <div class="form-group">
+                                <select class="form-control form-select-tag" multiple="multiple" name="portpass_tgthost">
+
+                                    {%  for item  in assets_list  %}
+                                     <option>{{ item.business_name }}</option>
+                                    {%  endfor %}
+
+
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-star-outline zmdi-hc-fw"></i>任务名称</span>
+                            </span>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="nsfocus_name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-dns zmdi-hc-fw"></i>任务描述</span>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="nsfocus_desc">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-dns zmdi-hc-fw"></i>端口范围</span>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="nsfocus_port">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-accounts-add zmdi-hc-fw"></i>扫描深度</span>
+                            <div class="form-group">
+                                <select class="form-control form-select" name="nsfocus_level">
+
+                                    <option value=3 >普通</option>
+                                    <option value=4 >深度</option>
+                                    <option value=5 >极深</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-balance zmdi-hc-fw"></i>开启存活判断</span>
+                            <div class="form-group">
+                                <div class="toggle-switch">
+                                            <input type="checkbox" class="toggle-switch__checkbox" name="nsfocus_active">
+                                            <i class="toggle-switch__helper"></i>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-balance zmdi-hc-fw"></i>端口深度</span>
+                            <div class="form-group">
+                                <select class="form-control form-select" name="nsfocus_port_level">
+                                        <option value=3 >普通</option>
+                                        <option value=4 >较快</option>
+                                        <option value=5 >极快</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-balance zmdi-hc-fw"></i>扫描器选择</span>
+                            <div class="form-group">
+                                <select class="form-control form-select" name="nsfocus_dev">
+
+                                        <option value=0 >景芳</option>
+                                        <option value=1 >柯桥</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="addData">
+                    <div class="addBtn" style="text-align:center">
+                        <button type="button" onclick="confirmAdd()" class="btn btn-primary">提交</button>
+                        <button type="button" onclick="cancelAdd()" class="btn btn-danger">取消</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                                <button type="addBtn"  title="" data-toggle="tooltip" data-placement="left" data-original-title="填写地址的时候要注意方式">
+                                    说明
+                                </button>
+            </div>
+        </div>
+
+
+
+            </section>
+
+{% endblock %}
+
+{% block js %}
+<script src="/static/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+<script src="/static/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script src="/static/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="/static/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+<script src="/static/vendors/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+<script src="/static/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/static/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="/static/vendors/bower_components/flatpickr/dist/flatpickr.min.js"></script>
+
+{#<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.js"></script>#}
+<script src="/static/js/csrf.js"></script>
+<script src="/static/js/app.min.js"></script>
+
+
+
+
+
+
+
+
+
+     <!-- App functions and actions -->
+
+<script type="text/javascript">
+        var dtTable;
+
+
+        $(function(){
+
+
+
+       dtTable =  $('#dataTable').DataTable({
+        // ordering: false,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '/api/get/nsfcous/task_list/',
+            type: 'GET'
+        },
+        columns: [{
+            "targets" : 0,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                       var html = ' <th> <label class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input itemId" value='+row[0]+'>'+
+                        '<span class="custom-control-indicator"></span><span class="custom-control-description"></span> </label></th>';
+                return html;
+            }
+        },
+            {
+            "targets" : 1,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center"><a href="/task_info">'+row[2]+'</a></td>';
+                return html;
+            }
+        },
+            {
+            "targets" : 3,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = ' <th class="text-center"><a href="/task_info">'+row[3]+'</a></td>';
+                return html;
+            }},
+
+
+            {
+            "targets" : 3,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th class="text-center"><span class="badge badge-pill badge-info">' + row[5] + '</span></th>';
+                return html;
+            }},
+
+                  {
+            "targets" : 4,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th scope="row"><div  hidden-lg-down">' +
+                        '<i class="zmdi zmdi-time"></i>' + row[6] +
+                        '</div></th>';
+                return html;
+            }},
+
+                {
+            "targets" : 5,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th scope="row"><div hidden-lg-down">'+
+                                    '<i class="zmdi zmdi-time"></i>'+row[7]+
+                                '</div></th>';
+                return html;
+                }},
+
+               {
+            "targets" : 6,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<th class="text-center"><span class="badge badge-pill badge-info">' + row[4] + '</span></th>';
+                return html;
+            }},
+
+
+             {
+            "targets" : 7,//操作按钮目标列
+            "data" : null,
+            "render" : function(data, type, row) {
+                var html = '<button class="btn btn-success btn--icon" onclick="startTask(this)"><i class="zmdi zmdi-skip-next"></i></button>';
+                return html;
+            }},
+
+        ]
+    });
+
+            $('.addData').css({'max-height':$(window).height()});
+            // 全选 or 全不选
+            $('#checkAll').click(function(){
+                if ($(this).hasClass('checked')){
+                    $('.custom-control-input').prop('checked',false);
+                    $(this).removeClass('checked');
+                }else{
+                    $('.custom-control-input').prop('checked',true);
+                    $(this).addClass('checked');
+                }
+            });
+            // 删除
+           $('#delete').click(function(){
+                var $checkbox = $('.custom-control-input').filter(':checked');
+                var selectedData = [];
+
+                $checkbox.each(function () {
+                    selectedData.push($(this).val());
+                });
+
+                if($checkbox.size()){
+                    //ajax
+                    swal({
+                        title: "删除资产!",
+                        text: '你要删除资产吗？',
+                        type: "warning",
+                        showConfirmButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: "删除",
+                        closeOnConfirm: false,
+                        background: 'rgba(0, 0, 0, 0.96)'
+                    }).then(function() {
+                        console.log(selectedData)
+                        $.ajax({
+               dataType: "JSON",
+			   url:'/api/del/nsfocus/task/', //请求地址
+			   type:"delete",  //提交类似
+               contentType: "application/json;charset=utf-8",
+			   data: JSON.stringify({
+				'data':selectedData
+			}),  //提交参数
+			success:function(response){
+                dtTable.page(1).draw();
+                   $.notify({
+                        title: '删除任务',
+                        message: '删除任务成功'
+                    }, {
+                        type: 'success'
+                    });
+			},
+	    	error:function(response){
+                dtTable.page(1).draw();
+                $.notify({
+                        title: '删除任务',
+                        message: '删除失败'
+                    }, {
+                        type: 'danger'
+                    });
+
+	    	}
+		})
+                    })
+                }
+                    else{
+                    $.notify({
+                        title: '删除操作',
+                        message: '请选择一行进行删除'
+                    }, {
+                        type: 'warning'
+                    });
+                }
+            });
+            // 修改
+            // 添加
+            $('#addBtn').click(function(e){
+                e.stopPropagation();
+                $('body').addClass('aside-toggled')
+                $('.assetsPop').addClass('toggled').attr('data-change','0');
+            });
+        });
+        $(document).click(function(e){
+            if($(".assetsPop").hasClass("toggled")){
+                var con = $(".assetsPop");
+                if(!con.is(e.target) && con.has(e.target).length === 0){
+                    cancelAdd();
+                }
+            }
+        });
+
+
+            // select 样式
+            $(".form-select").select2();
+
+            $('.assetsPopMask').on('click', function () {
+                cancelAdd();
+            });
+
+        // 取消
+        function cancelAdd(){
+            $('body').removeClass('aside-toggled'),
+            $('.assetsPop').removeClass('toggled');
+        }
+
+        // 后台提交
+   function confirmAdd(){
+    //ob表单信息
+    var ob = {};
+    for (var i = 0;i< $('[name ^= "nsfocus"]').length;i++){
+        var name = $('[name ^= "nsfocus"]').eq(i+0).attr('name');
+        ob[name] = $('[name ^= "nsfocus"]').eq(i+0).val();
+
+    }
+  console.log(ob)
+    $.ajax({
+			dataType: "JSON",
+			url:'/api/add/nsfocus/task/',
+			type:"POST",
+			contentType: "application/json;charset=utf-8",
+			data: JSON.stringify({
+				'data':ob
+			}),
+			success:function(result){
+                dtTable.page(1).draw();
+                       $.notify({
+                        title: '添加资产',
+                        message: '添加成功'
+                    }, {
+                        type: 'success'
+                    });
+
+			},
+	    	error:function(response){
+                dtTable.page(1).draw();
+	    		alert('添加资产失败');
+	    	}
+        })
+        }
+
+   function startTask(obj){
+            num=$(obj).parents('tr').find('.itemId').val();
+          $.ajax({
+			dataType: "JSON",
+			url:'/api/get/nsfocus/report/'+num+'/',
+			type:"get",
+			contentType: "application/json;charset=utf-8",
+			success:function(response){
+                dtTable.page(1).draw();
+
+                   $.notify({
+                        title: '开始任务',
+                        message: '任务开始执行成功'
+                    }, {
+                        type: 'success'
+                    });
+			},
+	    	error:function(response){
+                dtTable.page(1).draw();
+                console.log(response)
+                $.notify({
+                        title: '开始端口扫描任务',
+                        message: '任务执行失败'
+                    }, {
+                        type: 'danger'
+                    });
+
+	    	}
+        })
+
+
+        }
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,20 @@
+python manage.py  runserver  0.0.0.0:8000 --insecure
+python manage.py celery beat
+python manage.py celerycam
+python  manage.py    celery worker  --loglevel=info
+python  manage.py   celery control enable_events
+
+
+以上都完成后，需要执行
+python manage.py crontab add
+将任务添加并生效
+
+显示当前的定时任务
+python manage.py crontab show
+
+删除所有定时任务
+python manage.py crontab remove
+
+
+export ANSIBLE_HOST_KEY_CHECKING=False
+

@@ -23,6 +23,14 @@ safe_scan是集合有CMDB主机资产管理。漏洞扫描，主机监控的个�
 * webSSH管理
 * 异常告警
 
+## safe/Helper下整理的漏扫API(项目中用的是绿盟扫描器)
+
+* 绿盟扫描器RSA
+* nessus_api_6
+* awvs_api_new
+
+
+
 
 
 

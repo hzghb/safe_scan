@@ -1,10 +1,9 @@
 # safe_scan
 
 [![Build Status](https://travis-ci.org/ChanceYu/react-calendar-picker.svg?branch=master)](https://travis-ci.org/ChanceYu/react-calendar-picker)
-[![](https://img.shields.io/badge/language-JavaScript-brightgreen.svg)](https://github.com/ChanceYu/react-calendar-picker)
+[![](https://img.shields.io/badge/language-P-brightgreen.svg)](https://github.com/ChanceYu/react-calendar-picker)
 [![](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php) 
 
-开源的安全扫描项目
 
 
 ## safe_scan 是什么

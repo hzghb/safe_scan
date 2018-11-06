@@ -40,7 +40,8 @@ ansible信息手动或自动获取
 
 
 主机详情
-![image](./read/FireShot Capture 2 - 资产信息库 - http___192.168.0.10_host_info_28_.png)
+
+![image](./read/FireShot Capture 003 - 资产信息库 - http___192.168.0.10_host_info_28_.jpg)
 
 
 webssh

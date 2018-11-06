@@ -41,7 +41,7 @@ ansible信息手动或自动获取
 
 主机详情
 
-![image](./read/test.jpg)
+![image](./read/test.png)
 
 
 webssh

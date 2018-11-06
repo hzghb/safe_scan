@@ -43,6 +43,9 @@ safe_scan是集合有CMDB主机资产管理。漏洞扫描，主机监控的个�
 资产列表：
 ![image](./read/assets.png)
 
+后台：
+![image](./read/test2.jpg)
+
 ansible信息手动或自动获取
 ![image](./read/ansible.png)
 

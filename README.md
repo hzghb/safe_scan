@@ -57,7 +57,15 @@ ansible信息手动或自动获取
 
 ### 主机详情
 
-![image](./read/test.png)
+![image](./read/ansble.png)
+
+### 漏洞
+![image](./read/vul.png)
+
+
+### 变化告警
+![image](./read/.png)
+
 
 
 ### webssh

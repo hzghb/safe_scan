@@ -62,3 +62,9 @@ ansible信息手动或自动获取
 
 ### webssh
 ![image](./read/ssh2.png)
+
+
+## License
+[![](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php) 
+
+[MIT](https://opensource.org/licenses/MIT)，享受开源的乐趣。

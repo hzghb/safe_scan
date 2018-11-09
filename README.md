@@ -64,7 +64,7 @@ ansible信息手动或自动获取
 
 
 ### 变化告警
-![image](./read/.png)
+![image](./read/status.png)
 
 
 

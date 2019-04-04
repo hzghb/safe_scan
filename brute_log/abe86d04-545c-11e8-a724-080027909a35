@@ -1,2 +1,0 @@
-# Medusa v.2.2 (2018-05-10 22:16:03)
-# medusa -h 192.168.56.101 -u root -P /root/web/uploads/dic/2018/03/passwod_17000.txt -M ssh -t 100 -O brute_log/abe86d04-545c-11e8-a724-080027909a35 -n 22 -F 

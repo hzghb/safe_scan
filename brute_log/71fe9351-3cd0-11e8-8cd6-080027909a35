@@ -1,3 +1,0 @@
-# Medusa v.2.2 (2018-04-10 23:04:21)
-# medusa -h 134.96.111.196 -u root -P /root/web/uploads/dic/2018/03/pass.txt -M ssh -t 100 -O brute_log/71fe9351-3cd0-11e8-8cd6-080027909a35 -F 
-# Medusa has finished (2018-04-10 23:04:22).

